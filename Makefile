@@ -24,9 +24,9 @@
 
 .DEFAULT_GOAL=git-commit-auto-push
 
-APP=app
+APP=sunstrap
 MESSAGE="Update"
-PROJECT=project
+PROJECT=plonetheme
 TMP:=$(shell echo `tmp`)
 
 commit: git-commit-auto-push
