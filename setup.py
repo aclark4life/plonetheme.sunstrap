@@ -17,7 +17,7 @@ setup(
         'setuptools',
     ],
     long_description=open('README.rst').read() + '\n' + open('CHANGES.rst').read(),
-    name='',
+    name='plonetheme.sunstrap',
     namespace_packages=[
         'plonetheme',
     ],
