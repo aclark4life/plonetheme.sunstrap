@@ -9,7 +9,7 @@
         directory="profiles/default"
         name="default"
         provides="Products.GenericSetup.interfaces.EXTENSION"
-        title="An add-on for all seasons" />
+        title="A theme for all seasons" />
 
     <plone:static
         directory="theme"
