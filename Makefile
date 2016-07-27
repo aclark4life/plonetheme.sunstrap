@@ -217,3 +217,6 @@ vagrant-init:
 	vagrant up --provider virtualbox
 vagrant-up:
 	vagrant up --provision
+
+# Sunstrap
+readme-test: viewdoc
