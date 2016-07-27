@@ -219,5 +219,5 @@ vagrant-up:
 	vagrant up --provision
 
 # Sunstrap
-readme-test:
+python-package-readme-test:
 	viewdoc
