@@ -24,15 +24,15 @@
 
 .DEFAULT_GOAL=git-commit-auto-push
 
-APP=sunstrap
+APP=app
 MESSAGE="Update"
-PROJECT=plonetheme
+PROJECT=project
 TMP:=$(shell echo `tmp`)
 
 commit: git-commit-auto-push
 co: git-checkout-branches
 db: django-migrate django-su
-db-clean: django-db-clean-postgres
+db-init: django-db-init-postgres
 django-start: django-init
 fe-init: npm-init npm-install grunt-init grunt-serve
 fe: npm-install grunt-serve
@@ -43,9 +43,10 @@ lint: python-flake python-yapf python-wc
 migrate: django-migrate
 push: git-push
 package-init: python-package-init
+package-lint: python-package-lint
+package-test: python-package-test
 plone-start: plone-init
 python-test: python-package-test
-readme: python-package-readme-test
 readme-test: python-package-readme-test
 release: python-package-release
 release-test: python-package-release-test
@@ -56,12 +57,19 @@ test: python-test
 vm: vagrant-up
 vm-down: vagrant-suspend
 
+# ABlog
+ablog-init:
+	ablog start
+ablog-build:
+	ablog build
+ablog-serve:
+	ablog serve
 
 # Django
-django-db-clean-postgres:
+django-db-init-postgres:
 	-dropdb $(PROJECT)-$(APP)
 	-createdb $(PROJECT)-$(APP)
-django-db-clean-sqlite:
+django-db-init-sqlite:
 	-rm -f $(PROJECT)-$(APP).sqlite3
 django-init:
 	-mkdir -p $(PROJECT)/$(APP)
@@ -74,7 +82,7 @@ django-migrate:
 	python manage.py migrate
 django-migrations:
 	python manage.py makemigrations $(APP)
-django-migrations-clean:
+django-migrations-init:
 	rm -rf $(PROJECT)/$(APP)/migrations
 	$(MAKE) django-migrations
 django-serve:
@@ -164,13 +172,13 @@ python-flake:
 	-flake8 *.py
 	-flake8 $(PROJECT)/*.py
 	-flake8 $(PROJECT)/$(APP)/*.py
-python-package-check:
-	check-manifest
-	pyroma .
 python-package-init:
 	mkdir -p $(PROJECT)/$(APP)
 	touch $(PROJECT)/$(APP)/__init__.py
 	touch $(PROJECT)/__init__.py
+python-package-lint:
+	check-manifest
+	pyroma .
 python-package-readme-test:
 	rst2html.py README.rst > readme.html; open readme.html
 python-package-release:
@@ -208,11 +216,10 @@ sphinx-serve:
 # Vagrant
 vagrant-box-update:
 	vagrant box update
-vagrant-clean:
-	vagrant destroy
 vagrant-down:
 	vagrant suspend
 vagrant-init:
+	vagrant destroy
 	vagrant init ubuntu/trusty64
 	vagrant up --provider virtualbox
 vagrant-up:
