@@ -219,4 +219,5 @@ vagrant-up:
 	vagrant up --provision
 
 # Sunstrap
-readme-test: viewdoc
+readme-test:
+	viewdoc
