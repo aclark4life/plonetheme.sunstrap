@@ -5,13 +5,16 @@ VERSION = '0.0.6'
 
 setup(author='Alex Clark',
       author_email='aclark@aclark.net',
-      classifiers=[],
-      description='',
+      classifiers=[
+          'Framework :: Plone :: 4.3',
+          'Programming Language :: Python :: 2.7',
+      ],
+      description='Plone theme',
       entry_points={
           'z3c.autoinclude.plugin': 'target = plone',
       },
-      keywords='',
-      license='',
+      keywords='Bootstrap Diazo Modern Plone Sunburst Theme Theming',
+      license='GPL2',
       include_package_data=True,
       install_requires=[
           'setuptools',
@@ -24,6 +27,6 @@ setup(author='Alex Clark',
       ],
       packages=find_packages(),
       test_suite='',
-      url='',
+      url='https://github.com/aclark4life/plonetheme.sunstrap',
       version=VERSION,
       zip_safe=False, )
