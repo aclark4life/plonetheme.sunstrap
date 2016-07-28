@@ -5,6 +5,7 @@ Changes
 ------------------
 
 - Use Bootstrap columns
+- Add Carousel resources
 
 0.0.5 (07-27-2016)
 ------------------
